@@ -1,0 +1,66 @@
+class $sensor_name(GeckoIO.Boards.$board_type.Pins.Analog):
+
+    # This is optional and typically used during devlopment.
+    # if this doesn't exist, 
+    cik = '$cik'
+
+
+    # Pin identifier on the board
+    pin_id = $pin_number
+
+    # Report rate in seconds
+    # Must be a multiple of read_rate, else will be rounded up to read rate.
+    # default is 10 seconds
+    report_rate = $report_rate
+
+
+    # Optional -- Consecutive samples to read  defaults to 1
+    # If this is not 1, an array is returned to translation.
+    # if this IS 1 or blank a single number will be returned to translation
+    # samples_per_read = 100
+
+    # description of sensor
+    description = ""
+
+    def translation(self, input):
+        '''
+        Translation to apply to the incoming data, inputted value is voltage and output is
+        value that will be sent to be post processed.
+        If samples_per_read is set and > 1, an array will be inputted, you can do whatever processing
+        you need of that array but you must return a single value.
+        '''
+        return input
+
+    def preprocess(self, board):
+        '''
+        do things before the sensor is read (power on sensors, read other sensors)
+        return false if processing should stop (default is true)
+        '''
+
+        return True
+        
+
+    def postprocess(self, board, input):
+        '''
+        return a dictionary of key values to write to Exosite.
+        If you don't want to send anything, return None.
+
+        Default behavior is to write the input value to a dataport with the same name as
+        this class is named
+        '''
+        # As an example, you could check your sensor values against thresholds here
+        # to send alerts
+        # high_threshold = 12
+        # low_threshold = 10
+        # if input > high_threshold or input < low_threshold:
+        #     
+        #    vals_to_write = {   
+        #                        self.__class__.__name__ :   input, 
+        #                        "some_alert" :              "Something Happened!"
+        #                    }
+
+        vals_to_write = {   
+                            self.__class__.__name__ :   input
+                        }
+
+        return vals_to_write

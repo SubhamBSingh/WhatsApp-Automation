@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: Gecko
+Version: 1.0.19
+Summary: A framework for building applications to communicate with Exosite
+Home-page: https://github.com/exosite/gecko
+Author: Andy Lee
+Author-email: andylee@exosite.com
+License: MIT
+Description: UNKNOWN
+Keywords: exosite iot gateway framework
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
